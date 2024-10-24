@@ -66,7 +66,7 @@ export default function Nav() {
 			{/* Sidenav for small screens */}
 
 			<nav
-				className={`w-screen h-full absolute z-10  ${
+				className={`w-screen h-full absolute z-50  ${
 					isNavOpen && isMobile ? "bg-black/50" : "hidden"
 				}`}
 				onClick={() => {
