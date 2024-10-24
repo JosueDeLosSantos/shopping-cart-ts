@@ -4,7 +4,7 @@ import heroImg from "/nitish-goswami.jpg";
 export default function Home() {
 	return (
 		<div className='relative'>
-			<img src={heroImg} className='h-[calc(100vh-60px)] w-screen -z-10 relative' />
+			<img src={heroImg} className='h-[calc(100vh-60px)] w-screen relative' />
 			<div className='pt-[16vh] w-[80%] md:w-[60%] text-center z-10 absolute top-[30%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-white'>
 				<h1 className='text-2xl md:text-4xl font-bold pb-4'>
 					Let your dreams become true

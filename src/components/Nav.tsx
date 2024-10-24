@@ -47,6 +47,7 @@ export default function Nav() {
 
 				{isMobile && !isNavOpen && (
 					<MdMenu
+						className='z-50'
 						size={24}
 						onClick={() => {
 							setIsNavOpen(true);
