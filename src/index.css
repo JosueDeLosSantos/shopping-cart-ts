@@ -9,3 +9,6 @@
 		src: url(/fonts/Anton/Anton-Regular.ttf);
 	}
 }
+.selected {
+	color: #f00039;
+}

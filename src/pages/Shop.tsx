@@ -1,42 +1,106 @@
-import { Paper, Rating } from "@mui/material";
-import { useShopContext } from "../Contexts/Cartcontext";
+import { Box, Tab, Tabs } from "@mui/material";
+import { SetStateAction, useState } from "react";
+import Category from "../components/Category";
 
 export default function Shop() {
-	const { items, addToCart, removeFromCart } = useShopContext();
+	type TabPanelProps = {
+		children?: React.ReactNode;
+		index: number;
+		value: number;
+	};
 
-	console.log(items);
+	function CustomTabPanel(props: TabPanelProps) {
+		const { children, value, index, ...other } = props;
+
+		return (
+			<div
+				role='tabpanel'
+				hidden={value !== index}
+				id={`simple-tabpanel-${index}`}
+				aria-labelledby={`simple-tab-${index}`}
+				{...other}
+			>
+				{value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+			</div>
+		);
+	}
+
+	function a11yProps(index: number) {
+		return {
+			id: `simple-tab-${index}`,
+			"aria-controls": `simple-tabpanel-${index}`
+		};
+	}
+
+	const [value, setValue] = useState(0);
+
+	const handleChange = (_: React.SyntheticEvent, newValue: SetStateAction<number>) => {
+		setValue(newValue);
+	};
 
 	return (
-		<div className='px-4 py-4'>
-			<h2 className='text-center text-xl md:text-3xl font-bold'>All</h2>
-			<div className='flex flex-wrap justify-center w-full my-[5vh]'>
-				{items.map((item) => (
-					<Paper
-						elevation={1}
-						className='flex flex-col items-center justify-center itemCard p-4 m-4 text-center w-min'
-						key={`${item.id}`}
+		<div className='px-4'>
+			{/* Category Selection Bar */}
+			<Box sx={{ width: "100%", position: "relative" }}>
+				<Box
+					sx={{
+						display: "flex",
+						justifyContent: "center",
+						borderBottom: 1,
+						borderColor: "divider",
+						position: "sticky",
+						top: 60,
+						backgroundColor: "rgb(241 245 249)",
+						zIndex: 2
+					}}
+				>
+					<Tabs
+						value={value}
+						onChange={handleChange}
+						variant='scrollable'
+						scrollButtons='auto'
+						allowScrollButtonsMobile
+						aria-label='basic tabs example'
 					>
-						<img
-							className='mb-[3vw] object-contain max-w-[200px] h-1/2 mx-auto'
-							src={`${item.image}`}
+						<Tab sx={{ fontWeight: "bold" }} label='All' {...a11yProps(0)} />
+						<Tab
+							sx={{ fontWeight: "bold" }}
+							label="Men's clothing"
+							{...a11yProps(1)}
 						/>
-						<p className='mb-[1vw] text-xs md:text-sm font-semibold'>
-							{item.title}
-						</p>
-						<p className='text-xs text-slate-400'>Price per unit</p>
-						<p className='text-base md:text-2xl font-bold'>{`$ ${item.price}`}</p>
-						<div className='flex content-center'>
-							<Rating
-								defaultValue={item.rating.rate}
-								precision={item.rating.rate}
-								size='small'
-								readOnly
-							/>
-							<span className='text-xs ml-1 text-slate-400'>{`(${item.rating.count})`}</span>
-						</div>
-					</Paper>
-				))}
-			</div>
+						<Tab
+							sx={{ fontWeight: "bold" }}
+							label="Women's clothing"
+							{...a11yProps(2)}
+						/>
+						<Tab
+							sx={{ fontWeight: "bold" }}
+							label='Jewelery'
+							{...a11yProps(3)}
+						/>
+						<Tab
+							sx={{ fontWeight: "bold" }}
+							label='Electronics'
+							{...a11yProps(4)}
+						/>
+					</Tabs>
+				</Box>
+				<CustomTabPanel value={value} index={0}>
+					<Category category='all' />
+				</CustomTabPanel>
+				<CustomTabPanel value={value} index={1}>
+					<Category category="men's clothing" />
+				</CustomTabPanel>
+				<CustomTabPanel value={value} index={2}>
+					<Category category="women's clothing" />
+				</CustomTabPanel>
+				<CustomTabPanel value={value} index={3}>
+					<Category category='jewelery' />
+				</CustomTabPanel>
+				<CustomTabPanel value={value} index={4}>
+					<Category category='electronics' />
+				</CustomTabPanel>
+			</Box>
 		</div>
 	);
 }

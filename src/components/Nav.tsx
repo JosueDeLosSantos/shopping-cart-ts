@@ -25,7 +25,7 @@ export default function Nav() {
 	};
 
 	return (
-		<header>
+		<header className='sticky top-0 z-50'>
 			<nav className='w-full text-white bg-black px-8 py-4 flex flex-row justify-end text-lg'>
 				<div
 					onClick={() => {
@@ -57,17 +57,50 @@ export default function Nav() {
 
 				{!isMobile && (
 					<div className='flex flex-row gap-8'>
-						<Link to='/'>Home</Link>
-						<Link to='/shop'>Shop</Link>
-						<Link to='/cart'>Cart</Link>
-						<Link to='/about'>About</Link>
+						<Link
+							className={`${
+								location.pathname === "/" &&
+								"text-red-300 underline underline-offset-8"
+							}`}
+							to='/'
+						>
+							Home
+						</Link>
+						<Link
+							className={`${
+								location.pathname === "/shop" &&
+								"text-red-300 underline underline-offset-8"
+							}`}
+							to='/shop'
+						>
+							Shop
+						</Link>
+						<Link
+							className={`${
+								location.pathname === "/cart" &&
+								"text-red-300 underline underline-offset-8"
+							}`}
+							to='/cart'
+						>
+							Cart
+						</Link>
+						<Link
+							className={`${
+								location.pathname === "/about" &&
+								"text-red-300 underline underline-offset-8"
+							}`}
+							to='/about'
+						>
+							About
+						</Link>
 					</div>
 				)}
 			</nav>
+
 			{/* Sidenav for small screens */}
 
 			<nav
-				className={`w-screen h-full absolute z-50  ${
+				className={`w-screen h-screen absolute z-50  ${
 					isNavOpen && isMobile ? "bg-black/50" : "hidden"
 				}`}
 				onClick={() => {
@@ -77,19 +110,47 @@ export default function Nav() {
 				<NavShow>
 					<div className='min-w-[250px] w-6/12 h-screen bg-black absolute top-0 right-0 p-8'>
 						<div className='flex flex-col gap-8'>
-							<Link className='text-white flex gap-2' to='/'>
+							<Link
+								className={`${
+									location.pathname === "/"
+										? "text-red-300 flex gap-2"
+										: "text-white flex gap-2"
+								}`}
+								to='/'
+							>
 								<MdHome size={21} />
 								Home
 							</Link>
-							<Link className='text-white flex gap-2' to='/shop'>
+							<Link
+								className={`${
+									location.pathname === "/shop"
+										? "text-red-300 flex gap-2"
+										: "text-white flex gap-2"
+								}`}
+								to='/shop'
+							>
 								<MdShoppingBag size={21} />
 								Shop
 							</Link>
-							<Link className='text-white flex gap-2' to='/cart'>
+							<Link
+								className={`${
+									location.pathname === "/cart"
+										? "text-red-300 flex gap-2"
+										: "text-white flex gap-2"
+								}`}
+								to='/cart'
+							>
 								<MdShoppingCart size={21} />
 								Cart
 							</Link>
-							<Link className='text-white flex gap-2' to='/about'>
+							<Link
+								className={`${
+									location.pathname === "/about"
+										? "text-red-300 flex gap-2"
+										: "text-white flex gap-2"
+								}`}
+								to='/about'
+							>
 								<IoMdInformationCircle size={21} />
 								About
 							</Link>
