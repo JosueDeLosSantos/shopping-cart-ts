@@ -9,6 +9,12 @@
 		src: url(/fonts/Anton/Anton-Regular.ttf);
 	}
 }
-.selected {
-	color: #f00039;
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgb(38 38 38 / 1) transparent;
+}
+
+.bg-image {
+	background-image: url("/nitish-goswami.jpg");
 }

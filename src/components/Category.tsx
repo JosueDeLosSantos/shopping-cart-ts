@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../app/rootReducer";
-import ItemsSelection from "./ItemSelection";
+import ItemsSelection from "./ItemsSelection";
 
 export default function Category({ category }: { category: string }) {
 	const items = useSelector((state: RootState) => state.fakeStoreItems);

@@ -36,10 +36,8 @@ export default function Nav() {
 							navigate("/");
 						}
 					}}
-					className={`${
-						isNavOpen && isMobile
-							? "ml-auto font-Anton text-xl"
-							: "mr-auto font-Anton"
+					className={`font-Anton cursor-pointer ${
+						isNavOpen && isMobile ? "ml-auto text-xl" : "mr-auto"
 					}`}
 				>
 					Dreams Depot
@@ -51,6 +49,7 @@ export default function Nav() {
 						size={24}
 						onClick={() => {
 							setIsNavOpen(true);
+							window.scrollTo(0, 0); // scroll to top of page
 						}}
 					/>
 				)}
