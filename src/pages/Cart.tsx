@@ -3,12 +3,11 @@ import { RootState } from "../app/rootReducer";
 import { Paper } from "@mui/material";
 import { ShopItem } from "../utils/shopSlice";
 import paymentMethods from "/payment-methods.png";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
 	const items = useSelector((state: RootState) => state.fakeStoreItems);
 	const cart = items.filter((item) => item.requests > 0);
-	const navigate = useNavigate();
 
 	return (
 		<div className='p-4'>
