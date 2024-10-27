@@ -37,7 +37,7 @@ export default function SelectedItem() {
 						<p className='text-center text-sm md:text-base md:text-start mb-4'>
 							{item.description}
 						</p>
-						<p className='text-slate-400 mb-1 text-sm md:text-base'>
+						<p className='text-slate-500 mb-1 text-sm md:text-base'>
 							Price per unit
 						</p>
 						<p className='md:text-3xl text-2xl font-bold mb-2'>{`$ ${item.price}`}</p>
@@ -48,7 +48,7 @@ export default function SelectedItem() {
 								size='medium'
 								readOnly
 							/>
-							<span className='ml-1 text-slate-400'>{`(${item.rating.count})`}</span>
+							<span className='ml-1 text-slate-500'>{`(${item.rating.count})`}</span>
 						</div>
 						{/* Add or Remove items from cart */}
 						<div className='mt-8'>

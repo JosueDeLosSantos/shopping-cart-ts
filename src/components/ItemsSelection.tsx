@@ -19,9 +19,10 @@ export default function ItemsSelection({ item }: { item: ShopItem }) {
 			<img
 				className='mb-[3vw] object-contain max-w-[200px] h-1/2 mx-auto'
 				src={`${item.image}`}
+				alt="item's image"
 			/>
 			<p className='mb-[1vw] text-xs md:text-sm font-semibold'>{item.title}</p>
-			<p className='text-xs text-slate-400'>Price per unit</p>
+			<p className='text-xs text-slate-500'>Price per unit</p>
 			<p className='text-base md:text-2xl font-bold'>{`$ ${item.price.toFixed(
 				2
 			)}`}</p>
@@ -32,7 +33,7 @@ export default function ItemsSelection({ item }: { item: ShopItem }) {
 					size='small'
 					readOnly
 				/>
-				<span className='text-xs ml-1 text-slate-400'>{`(${item.rating.count})`}</span>
+				<span className='text-xs ml-1 text-slate-500'>{`(${item.rating.count})`}</span>
 			</div>
 			{/* Add or Remove items from cart */}
 			<div className='mt-4'>
