@@ -4,8 +4,12 @@ import { MdHome, MdMenu, MdShoppingBag, MdShoppingCart } from "react-icons/md";
 import { IoMdInformationCircle } from "react-icons/io";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/rootReducer";
 
 export default function Nav() {
+	const items = useSelector((state: RootState) => state.fakeStoreItems);
+	const cart = items.filter((item) => item.requests > 0);
 	const windowSize = useWindowSize();
 	const navigate = useNavigate();
 	const isMobile = windowSize.windowWidth < 768;
@@ -44,14 +48,20 @@ export default function Nav() {
 				</div>
 
 				{isMobile && !isNavOpen && (
-					<MdMenu
-						className='z-50'
-						size={24}
+					<div
+						className='relative'
 						onClick={() => {
 							setIsNavOpen(true);
 							window.scrollTo(0, 0); // scroll to top of page
 						}}
-					/>
+					>
+						<MdMenu className='z-50' size={24} />
+						{cart.length > 0 && location.pathname !== "/cart" && (
+							<div className='absolute text-white top-[-3px] left-4 text-xs bg-blue-500 min-w-4 w-fit h-4 rounded-full flex justify-center items-center'>
+								{cart.length}
+							</div>
+						)}
+					</div>
 				)}
 
 				{!isMobile && (
@@ -75,13 +85,18 @@ export default function Nav() {
 							Shop
 						</Link>
 						<Link
-							className={`${
+							className={`relative ${
 								location.pathname === "/cart" &&
 								"text-red-300 underline underline-offset-8"
 							}`}
 							to='/cart'
 						>
-							Cart
+							{cart.length > 0 && location.pathname !== "/cart" && (
+								<div className='absolute text-white top-[-3px] left-8 text-xs bg-blue-500 min-w-4 w-fit h-4 rounded-full flex justify-center items-center'>
+									{cart.length}
+								</div>
+							)}
+							<div>Cart</div>
 						</Link>
 						<Link
 							className={`${
@@ -139,7 +154,14 @@ export default function Nav() {
 								}`}
 								to='/cart'
 							>
-								<MdShoppingCart size={21} />
+								<div className='relative'>
+									{cart.length > 0 && location.pathname !== "/cart" && (
+										<div className='absolute text-white top-[-10px] left-3 text-xs bg-blue-500 min-w-4 w-fit h-4 rounded-full flex justify-center items-center'>
+											{cart.length}
+										</div>
+									)}
+									<MdShoppingCart size={21} />
+								</div>
 								Cart
 							</Link>
 							<Link

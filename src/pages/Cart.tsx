@@ -3,10 +3,12 @@ import { RootState } from "../app/rootReducer";
 import { Paper } from "@mui/material";
 import { ShopItem } from "../utils/shopSlice";
 import paymentMethods from "/payment-methods.png";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 export default function Cart() {
 	const items = useSelector((state: RootState) => state.fakeStoreItems);
 	const cart = items.filter((item) => item.requests > 0);
+	const navigate = useNavigate();
 
 	return (
 		<div className='p-4'>
@@ -33,7 +35,10 @@ function CartItem({ item }: { item: ShopItem }) {
 	const subTotal = item.price * item.requests;
 
 	return (
-		<div className='p-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 w-full border-b text-sm'>
+		<Link
+			className='p-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 w-full border-b text-sm cursor-pointer'
+			to={`/cart/${item.id}`}
+		>
 			<div className='md:col-span-2 font-semibold'>{item.title}</div>{" "}
 			<div className='grid grid-cols-2 gap-4'>
 				<div className='text-xs text-slate-500'>
@@ -42,7 +47,7 @@ function CartItem({ item }: { item: ShopItem }) {
 				</div>
 				<div className='font-semibold'>{`USD $${subTotal.toFixed(2)}`}</div>
 			</div>
-		</div>
+		</Link>
 	);
 }
 
