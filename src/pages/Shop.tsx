@@ -55,6 +55,8 @@ export default function Shop() {
 					}}
 				>
 					<Tabs
+						textColor='inherit'
+						indicatorColor='primary'
 						value={value}
 						onChange={handleChange}
 						variant='scrollable'
