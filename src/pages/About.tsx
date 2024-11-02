@@ -22,7 +22,7 @@ const About = () => {
 				</a>
 			</p>
 			<a href='https://github.com/JosueDeLosSantos' className='flex gap-1 mx-auto'>
-				<FaGithub className='inline' />
+				<FaGithub className='size-5' />
 				<p className='hover:underline'>Josue De los santos 2024</p>
 			</a>
 		</main>
